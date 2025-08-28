@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textify - Lorem Ipsum Generator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <rect width="24" height="24" rx="4" fill="#4F46E5"/>
+          <text x="12" y="16" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">T</text>
+        </svg>
+        <h1>Textify</h1>
+      </div>
+      <p class="subtitle">Generador de Lorem Ipsum</p>
+    </header>
+
+    <main class="main">
+      <div class="form-group">
+        <label for="textType" class="label">Tipo de texto:</label>
+        <select id="textType" class="select">
+          <option value="words">Palabras</option>
+          <option value="sentences" selected>Oraciones</option>
+          <option value="paragraphs">Párrafos</option>
+          <option value="length">Longitud específica</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="textCount" class="label">Cantidad:</label>
+        <div class="input-group">
+          <input type="number" id="textCount" class="input" value="3" min="1" max="100">
+          <span id="unitLabel" class="unit-label">oraciones</span>
+        </div>
+        <div class="range-container">
+          <input type="range" id="textRange" class="range" value="3" min="1" max="20">
+          <div class="range-labels">
+            <span>1</span>
+            <span id="maxLabel">20</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="checkbox-label">
+          <input type="checkbox" id="startWithLorem" class="checkbox" checked>
+          <span class="checkmark"></span>
+          Comenzar con "Lorem ipsum"
+        </label>
+      </div>
+
+      <div class="preview-section">
+        <label class="label">Vista previa:</label>
+        <div id="preview" class="preview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</div>
+      </div>
+
+      <div class="button-group">
+        <button id="generateBtn" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 2V14M2 8H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Generar e Insertar
+        </button>
+        <button id="copyBtn" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="3" y="3" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <rect x="5" y="5" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          </svg>
+          Copiar
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="status" id="status">Listo para generar texto</div>
+      <div class="help-text">
+        <small>Haz clic en cualquier campo de texto y usa esta extensión para insertar Lorem Ipsum</small>
+      </div>
+    </footer>
+  </div>
+
+  <script src="lorem-generator.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
