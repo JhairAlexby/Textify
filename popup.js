@@ -88,14 +88,14 @@ class TextifyPopup {
 
     // Cambio de cantidad (input numérico)
     this.elements.textCount.addEventListener('input', () => {
-      this.syncInputs();
+      this.syncInputFromNumber();
       this.updatePreview();
       this.saveSettings();
     });
 
     // Cambio de cantidad (slider)
     this.elements.textRange.addEventListener('input', () => {
-      this.syncInputs();
+      this.syncInputFromRange();
       this.updatePreview();
       this.saveSettings();
     });
@@ -129,12 +129,23 @@ class TextifyPopup {
   }
 
   /**
-   * Sincroniza el input numérico con el slider
+   * Sincroniza el range slider cuando cambia el input numérico
    */
-  syncInputs() {
+  syncInputFromNumber() {
     const value = parseInt(this.elements.textCount.value) || 1;
-    this.elements.textRange.value = Math.min(value, parseInt(this.elements.textRange.max));
-    this.elements.textCount.value = this.elements.textRange.value;
+    const maxValue = parseInt(this.elements.textRange.max);
+    const clampedValue = Math.max(1, Math.min(value, maxValue));
+    
+    this.elements.textRange.value = clampedValue;
+    this.elements.textCount.value = clampedValue;
+  }
+
+  /**
+   * Sincroniza el input numérico cuando cambia el range slider
+   */
+  syncInputFromRange() {
+    const value = parseInt(this.elements.textRange.value) || 1;
+    this.elements.textCount.value = value;
   }
 
   /**
@@ -177,6 +188,9 @@ class TextifyPopup {
       this.elements.textCount.value = maxValue;
       this.elements.textRange.value = maxValue;
     }
+    
+    // Asegurar sincronización después de cambios de UI
+    this.syncInputFromNumber();
   }
 
   /**
